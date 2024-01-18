@@ -135,6 +135,7 @@
 
 
             //console.log(number);
+            number.sort(compare)
             numbers.push(number)
         }
 
@@ -149,7 +150,9 @@
             document.write(`<h3>第${i + 1}組號碼:${result}</h3><hr>`)
         }
 
-
+        function compare(b, a) {
+            return a - b;
+        }
 
 
 
