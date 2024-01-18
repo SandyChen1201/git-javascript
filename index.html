@@ -119,15 +119,18 @@
 
         //陣列(串列)
         //外迴圈控制組數
+        document.write(Date() + "<hr>"); //java內建Date()物件
+
+
         let numbers = []
         for (let j = 0; j < 6; j++) {
             let number = []
             for (let i = 0; i < 6; i++) {
                 let r = GetRandomInt(1, 49);
                 /*if (!number.includes(x)) {
-                    number.push(x);
+                number.push(x);
                 }
-                if (number.length == 6) {
+            if (number.length == 6) {
                     break;}*/
                 console.log(`<h3>第${i + 1}個號碼為:${r}</h3>`);
                 number.push(r)
@@ -136,6 +139,8 @@
 
 
             //console.log(number);
+            //排序
+            number.sort(compare);
             numbers.push(number)
         }
 
@@ -148,10 +153,16 @@
             result = numbers[i].join(",")
             console.log(result);
             document.write(`<h3>第${i + 1}組號碼:${result}</h3><hr>`)
+
         }
 
 
 
+        function compare(a, b) {
+            //排序:compare(a,b) a大於b 升序
+            //排序:compare(b,a) b大於a 降序
+            return a - b
+        }
 
 
     </script>
