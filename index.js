@@ -101,44 +101,64 @@ document.write(`<h3><b>特別號為:${GetRandomInt(1, 49)}</b></h3>`)
 
 //陣列(串列)
 //外迴圈控制組數
-const H3 = document.querySelector("h3");
-H3.innerHTML = Date() + "<hr>"
+const dateELement = document.querySelector(".date"); //. 是取用class的方法
+dateELement.innerText = Date()
+console.log(dateELement);
 //document.write(Date() + "<hr>"); //java內建Date()物件
 
+//原本的random numbers
+function GetNumbers(club, length) {
+    let numbers = []
+    for (let j = 0; j < club; j++) {
+        let number = []
+        for (let i = 0; i < length; i++) {
+            let r = GetRandomInt(1, 49);
+            /*if (!number.includes(x)) {
+            number.push(x);
+            }
+        if (number.length == 6) {
+                break;}*/
+            console.log(`<h3>第${i + 1}個號碼為:${r}</h3>`);
+            number.push(r)
 
-let numbers = []
-for (let j = 0; j < 6; j++) {
-    let number = []
-    for (let i = 0; i < 6; i++) {
-        let r = GetRandomInt(1, 49);
-        /*if (!number.includes(x)) {
-        number.push(x);
         }
-    if (number.length == 6) {
-            break;}*/
-        console.log(`<h3>第${i + 1}個號碼為:${r}</h3>`);
-        number.push(r)
+        //console.log(number);
+        //排序
+        number.sort(compare);
+        numbers.push(number)
+    }
+    return numbers;
+}
+
+//觸發buttom的部分
+function getLottoryNumber() {
+    //alert("click to get number!")
+
+    lottoryElement.innerHTML = ""; //字串清空 total=0
+    let club = prompt("需求組數:") //prompt是input
+    let length = prompt("需要幾碼?")
+    numbers = GetNumbers(club, length)
+    for (let i = 0; i < numbers.length; i++) {
+        result = numbers[i].join(",")
+        console.log(result);
+        lottoryElement.innerHTML += `<h3>第${i + 1}組號碼:${result}</h3><hr>`
+        //document.write(`<h3>第${i + 1}組號碼:${result}</h3><hr>`)
 
     }
-
-
-    //console.log(number);
-    //排序
-    number.sort(compare);
-    numbers.push(number)
 }
+
+
+
+
+
+
+
 
 //push=append
 //輸出樂透號碼到document
-console.log(numbers);
+//console.log(numbers);
 const lottoryElement = document.querySelector("#lottory") //因為是全域變數所以要先放前面不能放在下面
-for (let i = 0; i < numbers.length; i++) {
-    result = numbers[i].join(",")
-    console.log(result);
-    lottoryElement.innerHTML += `<h3>第${i + 1}組號碼:${result}</h3><hr>`
-    //document.write(`<h3>第${i + 1}組號碼:${result}</h3><hr>`)
 
-}
 
 
 
